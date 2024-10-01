@@ -30,7 +30,7 @@ export default function landing_screen(clickButton) {
           <Image source={require('../assets/scale5doggo.png')}style={styles.dogHatImage} />
     </View>
    
-    <Link href="/signup_login/Screen1" asChild>
+    <Link href="/signup_login/landing_screen_2" asChild>
       <Pressable style={styles.button} onPressLanding2={onPressLanding2}>
         <Text style={styles.text}>START</Text>
        </Pressable>

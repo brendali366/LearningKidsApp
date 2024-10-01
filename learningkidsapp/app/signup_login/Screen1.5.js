@@ -45,7 +45,7 @@ export default function Screen1_5(clickButton) {
       <Pressable style={styles.button} onpressChildSignUp={onpressChildSignUp}>
         <Text style={styles.text}>Continue</Text>
        </Pressable>
-    </Link>
+      </Link>
     </View>
   );
 }

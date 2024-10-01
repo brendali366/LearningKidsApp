@@ -109,7 +109,6 @@ export default function ChildSignup() {
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
-        secureTextEntry
       />
 
       <TouchableOpacity style={styles.button} onPress={handlechildSignup}>

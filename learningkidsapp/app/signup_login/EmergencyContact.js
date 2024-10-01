@@ -1,48 +1,34 @@
 import React from 'react';
-import { Pressable, Text, View, StyleSheet, TextInput, Button, Alert, SafeAreaView, TouchableOpacity} from 'react-native';
-import { Link } from 'expo-router';
+import { Pressable, Text, View, StyleSheet, TextInput, Button, Alert, SafeAreaView} from 'react-native';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'expo-router';
-import { Image } from 'react-native';
-import { useFonts, EBGaramond_600SemiBold,EBGaramond_800ExtraBold} from '@expo-google-fonts/eb-garamond';
 import { ScrollView } from 'react-native';
-import Dropdown from './Dropdown'; 
-import { LinearGradient } from 'expo-linear-gradient';
+import Dropdown from './Dropdown'; // Import the custom dropdown component
 import { ref, push, set, remove } from 'firebase/database';
 import { database } from '../config/firebaseConfig';
 import { auth } from '../config/firebaseConfig';
-import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
-
+/*Emergency Contacts*/
 const EmergencyContacts = () => {
 
-  {/*loading fonts here */}
- /* let [fontsLoaded] = useFonts({
-    EBGaramond_600SemiBold,EBGaramond_800ExtraBold
-  });
-  if (!fontsLoaded) {
-    return null;
-  }*/
+  {/*1st landing screen button */}
+  const navigation = useNavigation();
+  const nextButton = () => {
+  navigation.navigate('signup_login/signup_complete'); 
+  };
 
-    {/*1st landing screen button */}
-    const navigation = useNavigation();
-    const nextButton = () => {
-    navigation.navigate('signup_login/signup_complete'); 
-    };
-
-    const [contacts, setContacts] = useState([]);
-    const [showForm, setShowForm] = useState(false);
-    const [newContact, setNewContact] = useState({
+  const [contacts, setContacts] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [newContact, setNewContact] = useState({
     name: '',
     address: '',
     phone: '',
-    relationship: 'Mother', // Default relationship
-
+    relationship: 'Relationship',
   });
-
-  const [editIndex, setEditIndex] = useState(null); // Track the index of the contact being edited
+  const [editIndex, setEditIndex] = useState(null); // Track index of the contact being edited
   const [firebaseKey, setFirebaseKey] = useState(null); // Store Firebase key of the contact being edited
-  
+
   useEffect(() => {
     const fetchContacts = async () => {
       const parentId = auth.currentUser?.uid;
@@ -68,27 +54,11 @@ const EmergencyContacts = () => {
     fetchContacts();
   }, []);
 
-  const handleInputChange = (name, value) => { //setting editted contacts 
+  const handleInputChange = (name, value) => {
     setNewContact((prevContact) => ({
       ...prevContact,
       [name]: value,
     }));
-  };
-
-
-  const handleAddContact = () => {//adding new contacts
-    if (editIndex !== null) {
-      // Update existing contact
-      const updatedContacts = [...contacts];
-      updatedContacts[editIndex] = newContact;
-      setContacts(updatedContacts);
-      setEditIndex(null); // Reset edit mode
-    } else {
-      // Add new contact
-      setContacts((prevContacts) => [...prevContacts, newContact]);
-    }
-    setNewContact({ name: '', address: '', phone: '', relationship: 'Mother' });
-    setShowForm(false);
   };
 
   const handleEditContact = (index) => {
@@ -194,10 +164,7 @@ const EmergencyContacts = () => {
     }
   };
 
-
   return (
-
-    
     <SafeAreaView style={styles.safeArea}>
       <LinearGradient colors={['#6495ED', '#B0C4DE']} style={styles.background}/>
       <ScrollView contentContainerStyle={styles.container}>
@@ -239,7 +206,7 @@ const EmergencyContacts = () => {
             />
             <Button
               title={editIndex !== null ? 'Update Contact' : 'Done'}
-              onPress={handleAddContact}
+              onPress={handleAddOrUpdateContact}
             />
             {editIndex !== null && (
               <Button
@@ -280,12 +247,12 @@ const EmergencyContacts = () => {
             </View>
           </>
         )}
-
         <View style={styles.buttonContainer}>
           <Pressable style={styles.button} onPress={nextButton}>
             <Text style={styles.text}>Submit</Text>
           </Pressable>
         </View>
+        
 
       </ScrollView>
     </SafeAreaView>
