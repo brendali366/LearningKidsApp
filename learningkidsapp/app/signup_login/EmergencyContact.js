@@ -12,10 +12,13 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 /*Emergency Contacts*/
 const EmergencyContacts = () => {
 
-  {/*1st landing screen button */}
+  const route = useRoute();
+  const { child_username } = route.params;
+
+  {/*going to final sign up screen */}
   const navigation = useNavigation();
   const nextButton = () => {
-  navigation.navigate('signup_login/signup_complete'); 
+  navigation.navigate('signup_login/signup_complete', { child_username }); 
   };
 
   const [contacts, setContacts] = useState([]);

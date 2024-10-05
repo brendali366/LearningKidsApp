@@ -4,6 +4,7 @@ import { useFonts, EBGaramond_600SemiBold,EBGaramond_800ExtraBold } from '@expo-
 import { Link } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 
+
 //Landing Screen is the Main Entry of the Application, index.js = landing screen
 export default function landing_screen(clickButton) {
 
@@ -20,6 +21,7 @@ export default function landing_screen(clickButton) {
 
   //frontend
   return (
+
    <View style={styles.container}>
     <LinearGradient colors={['#6495ED', '#B0C4DE','#6495ED']} style={styles.background}/>
 
@@ -27,7 +29,7 @@ export default function landing_screen(clickButton) {
     <Text style={styles.title}>Learning Kids</Text>
     
     <View style={styles.corgi}>
-          <Image source={require('../assets/scale5doggo.png')}style={styles.dogHatImage} />
+          <Image source={require('../assets/scale5doggo.png')} />
     </View>
    
     <Link href="/signup_login/landing_screen_2" asChild>
@@ -36,6 +38,7 @@ export default function landing_screen(clickButton) {
        </Pressable>
     </Link>
     </View>
+
   );
 }
 

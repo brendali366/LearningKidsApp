@@ -1,60 +1,39 @@
-import React from 'react';
-import { Pressable, Text, View, StyleSheet, Image, TextInput } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Pressable, Text, View, StyleSheet, Image } from 'react-native';
 import { useFonts, EBGaramond_600SemiBold, EBGaramond_800ExtraBold } from '@expo-google-fonts/eb-garamond';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link } from 'expo-router';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import { getDatabase, ref, get } from 'firebase/database';
+import { auth } from '../config/firebaseConfig';
 
-export default function Button(clickButton) {
-
+export default function Profile() {
     // Loading fonts here
     let [fontsLoaded] = useFonts({
         EBGaramond_600SemiBold, EBGaramond_800ExtraBold
     });
-    if (!fontsLoaded) {
-        return null;
-    }
 
-    // Buttons for screens
-    const { onPressHome, homeScreenBtn = 'Home' } = clickButton;
-    const { onPressProfileSave, profileScreenSaveBtn = 'Save' } = clickButton;
+    const navigation = useNavigation();
+    const route = useRoute(); // Hook to access route params
+    const { child_username } = route.params; // Extracting child_username
+
+    // Function to navigate back to the home screen
+    const backButton = () => {
+        navigation.navigate('home/home', {child_username}); 
+    };
+
+    if (!fontsLoaded) {
+        return null; 
+    }
 
     return (
         <View style={styles.container}>
             <LinearGradient colors={['#6495ED', '#B0C4DE', '#6495ED']} style={styles.background} />
+            <Pressable style={styles.back_arrow_img} onPress={backButton}>
+                <Image source={require('../../assets/back_arrow.png')} style={styles.back_arrow_img} />
+            </Pressable>
 
-            <Text style={styles.profileHeadingText}>Username</Text>
-
-            {/* User Profile Picture */}
-            <View style={styles.userProfilePictureContainer}>
-                <View style={styles.imageContainer}>
-                    <Image source={require('../../assets/hats/banana.png')} style={styles.hatImage} />
-                    <Image source={require('../../assets/scale5doggo.png')} style={styles.doggoImage} />
-                </View>
-                <View style={styles.expAndexpText}>
-                    <Text style={styles.xpLevelText}>Level: </Text>
-                    <Image source={require('../../assets/games/exp.png')} style={styles.expImage} />
-                    <Text style={styles.xpLevelText}># until new reward and level.</Text>
-                </View>
-            </View>
-
-            <TextInput style={styles.input} placeholder="Edit Username" />
-            <TextInput style={styles.input} placeholder="Edit Name" />
-            <TextInput style={styles.input} placeholder="Edit Address" />
-
-            {/* Linking back to home screen */}
-            <Link href="/home/home" asChild>
-                <Pressable style={styles.button} onPress={onPressHome}>
-                    <Text style={styles.text}>{homeScreenBtn}</Text>
-                </Pressable>
-            </Link>
-
-            {/* Save button */}
-            <Link href="/home/home" asChild>
-                <Pressable style={styles.button} onPress={onPressProfileSave}>
-                    <Text style={styles.text}>{profileScreenSaveBtn}</Text>
-                </Pressable>
-            </Link>
-
+            <Text style={styles.profileHeadingText}> {child_username} Profile</Text>
+            
         </View>
     );
 }
@@ -64,14 +43,18 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#A7C7E7',
+        ...StyleSheet.absoluteFillObject,
+    },
+    background: {
+        ...StyleSheet.absoluteFillObject,
+        width: '100%',
+        height: '100%',
     },
     text: {
         color: '#000000',
         fontSize: 16,
         fontFamily: 'EBGaramond_800ExtraBold'
-    },
-    background: {
-        ...StyleSheet.absoluteFillObject, // Fill the entire container with this gradient color
     },
     profileHeadingText: {
         fontSize: 30,
@@ -82,18 +65,12 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     imageContainer: {
-        position: 'relative', // Enable positioning inside this container
+        position: 'relative', 
         alignItems: 'center',
     },
     doggoImage: {
         width: 200,
         height: 200,
-    },
-    hatImage: {
-        width: 200,
-        height: 100,
-        position: 'absolute', 
-        top: 0, 
     },
     expImage: {
         width: 330,
@@ -108,23 +85,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 10,
     },
-    input: {
-        height: 40,
-        width: '80%',
-        borderColor: '#f7e7b4',
-        borderWidth: 5,
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        fontSize: 16,
-        marginTop: 10,
-    },
-    button: {
-        width: 200,
-        padding: 5,
-        backgroundColor: '#f7e7b4',
-        borderRadius: 5,
-        marginVertical: 10,
-        alignItems: 'center',
-        marginBottom: 10,
+    back_arrow_img: {
+        position: 'absolute',
+        top: 20,
+        left: 20,
+        width: 75,
+        height: 75,
     },
 });

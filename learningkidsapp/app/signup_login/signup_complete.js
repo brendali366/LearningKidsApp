@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, Text, View, StyleSheet, Image } from 'react-native';
 import { useFonts, EBGaramond_600SemiBold, EBGaramond_800ExtraBold } from '@expo-google-fonts/eb-garamond';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 export default function SignupComplete() {
     let [fontsLoaded] = useFonts({
@@ -13,10 +13,12 @@ export default function SignupComplete() {
     if (!fontsLoaded) {
         return null;
     }
+    const route = useRoute();
+    const { child_username } = route.params;
 
     const navigation = useNavigation();
     const backButton = () => {
-        navigation.navigate('home/home');
+        navigation.navigate('home/home', { child_username });
     };
 
     return (

@@ -60,13 +60,14 @@ export default function ChildSignup() {
   
         Alert.alert('Successful child sign up', `${childfirstname} registered successfully!`);
         
-        // Reset form fields
         setchildFirstName('');
         setchildLastName('');
         setUsername('');
         
-        // Navigate to next screen
-        router.push('/signup_login/EmergencyContact');
+        router.push({
+          pathname: '/signup_login/choose_corgi_signup',
+          params: { child_username: username }
+      });
       } catch (error) {
         Alert.alert('Error', error.message);
       }

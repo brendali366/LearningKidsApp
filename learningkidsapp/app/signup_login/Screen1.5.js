@@ -16,7 +16,9 @@ export default function Screen1_5(clickButton) {
   }
   //Hooks we need to call all the time:
   const route = useRoute();
-  const { parent_first_name } = route.params; 
+
+  //to be able to pull parent first and last name and selected corgi later
+  const { parent_first_name} = route.params; 
   //back arrow to go back to the previous screen
   const navigation = useNavigation();
   const backButton = () => {

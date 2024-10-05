@@ -39,7 +39,7 @@ export default function ParentSignup() {
       router.push({
         pathname: '/signup_login/Screen1.5',
         //will be useful later to allow database info to show up on screens
-        params: { parent_first_name: parentfirstname, parent_last_name: {parentlastname} }
+        params: { parent_first_name: parentfirstname }
 
       });
     } catch (error) {
