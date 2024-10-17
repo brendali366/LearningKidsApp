@@ -4893,6 +4893,8 @@ fs.realpath@^1.0.0:
 
 fsevents@^2.3.2:
   version "2.3.3"
+  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
+  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 function-bind@^1.1.2:
   version "1.1.2"
@@ -5991,6 +5993,8 @@ marky@^1.2.2:
 
 matter-js@^0.20.0:
   version "0.20.0"
+  resolved "https://registry.npmjs.org/matter-js/-/matter-js-0.20.0.tgz"
+  integrity sha512-iC9fYR7zVT3HppNnsFsp9XOoQdQN2tUyfaKg4CHLH8bN+j6GT4Gw7IH2rP0tflAebrHFw730RR3DkVSZRX8hwA==
 
 md5-file@^3.2.3:
   version "3.2.3"
@@ -7099,6 +7103,8 @@ react-native-element-dropdown@^2.12.1:
 
 react-native-game-engine@^1.2.0:
   version "1.2.0"
+  resolved "https://registry.npmjs.org/react-native-game-engine/-/react-native-game-engine-1.2.0.tgz"
+  integrity sha512-SZwvxh0qN5HxuREL733B2VrtsadoSiN0RxulGaJu8OC3LTeliQM7whGQREtoBLo2tQ9iIzyzhiMSTzLCvmEJWg==
   dependencies:
     rxjs "^6.2.2"
 
@@ -7391,6 +7397,8 @@ run-parallel@^1.1.9:
 
 rxjs@^6.2.2:
   version "6.6.7"
+  resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.6.7.tgz"
+  integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -8180,6 +8188,8 @@ ts-interface-checker@^0.1.9:
 
 tslib@^1.9.0:
   version "1.14.1"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
+  integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
 tslib@^2.0.1, tslib@^2.1.0, tslib@^2.4.0:
   version "2.7.0"

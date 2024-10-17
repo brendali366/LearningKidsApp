@@ -2,6 +2,7 @@ import React from 'react';
 import { Pressable, Text, View, StyleSheet} from 'react-native';
 import {  useFonts, EBGaramond_600SemiBold,EBGaramond_800ExtraBold} from '@expo-google-fonts/eb-garamond';
 import { Link } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 
 
 
